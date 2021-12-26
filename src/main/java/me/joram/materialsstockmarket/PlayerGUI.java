@@ -110,6 +110,14 @@ public class PlayerGUI {
         addItemToOverview(Material.GOLD_INGOT);
         addItemToOverview(Material.IRON_INGOT);
         addItemToOverview(Material.EMERALD);
+        addItemToOverview(Material.SAND);
+        addItemToOverview(Material.DIRT);
+        addItemToOverview(Material.COBBLESTONE);
+        addItemToOverview(Material.GRAVEL);
+        addItemToOverview(Material.OAK_LOG);
+        addItemToOverview(Material.DARK_OAK_LOG);
+        addItemToOverview(Material.SAND);
+
 
     }
 
