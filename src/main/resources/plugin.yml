@@ -4,3 +4,7 @@ main: me.joram.materialsstockmarket.MaterialsStockMarket
 api-version: 1.18
 authors: [ JeromeNL ]
 description: A stock market for raw materials on your server
+
+commands:
+  mm:
+    description: Just a command
