@@ -14,11 +14,14 @@ public class PlayerListener implements Listener {
     private ItemStack clickedItem;
     private Inventory mainmenuInv;
     private  BuySell buySell;
+    private Main main;
 
 
 
-    public PlayerListener() {
+
+    public PlayerListener(Main main) {
          buySell = new BuySell();
+         this.main = main;
 
 
     }
@@ -41,7 +44,7 @@ public class PlayerListener implements Listener {
             if (e.getSlot() == 0)
                 e.getWhoClicked().closeInventory();
             else if (e.getSlot() >= 9 && e.getSlot() <= 35) {
-                PlayerGUI pGUI = new PlayerGUI();
+                PlayerGUI pGUI = new PlayerGUI(main);
                 Inventory inv = pGUI.createNewItemStock(e.getCurrentItem().getType());
                 e.getWhoClicked().openInventory(inv);
                 clickedItem = e.getCurrentItem();

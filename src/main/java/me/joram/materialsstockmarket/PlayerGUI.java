@@ -15,14 +15,15 @@ public class PlayerGUI {
     private int inventorySize;
     private final String title;
     public ItemStack[] materialList;
-    private DataController dc;
-    private MaterialsStockMarket main;
+    private Main main;
 
-    public PlayerGUI(){
+
+    public PlayerGUI(Main main){
         inventorySize = 36;
         materialList = new ItemStack[27];
         title = "Market Overview";
 
+        this.main = main;
         addAllItems();
 
     }
@@ -116,6 +117,12 @@ public class PlayerGUI {
         addItemToOverview(Material.DARK_OAK_LOG);
         addItemToOverview(Material.SAND);
         addItemToOverview(Material.DIAMOND_CHESTPLATE);
+        addItemToOverview(Material.GRANITE);
+        addItemToOverview(Material.KELP_PLANT);
+        addItemToOverview(Material.ZOMBIE_HEAD);
+        addItemToOverview(Material.GRAY_BED);
+
+
     }
 }
 

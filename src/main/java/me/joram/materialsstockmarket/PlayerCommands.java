@@ -8,6 +8,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 public class PlayerCommands implements CommandExecutor {
+    private Main main;
+
+    public PlayerCommands(Main main){
+        this.main = main;
+    }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
@@ -16,20 +21,24 @@ public class PlayerCommands implements CommandExecutor {
         }
 
 
+
+
         Player player = (Player) sender;
 
         if(cmd.getName().equalsIgnoreCase("mm")){
             if(args.length > 0) {
                 if (args[0].equalsIgnoreCase("open")) {
                     player.sendMessage("You tried to open the inventory Overview");
-                    PlayerGUI pGUI = new PlayerGUI();
+                    PlayerGUI pGUI = new PlayerGUI(main);
                     Inventory overViewInv = pGUI.generateOverViewGUI();
                     player.openInventory(overViewInv);
                     player.sendMessage("You tried to open the inventory Overview");
                 }
                 if(args[0].equalsIgnoreCase("test")){
+
+
                     player.sendMessage("You tried to open the inventory Overview");
-                    PlayerGUI pGUI = new PlayerGUI();
+                    PlayerGUI pGUI = new PlayerGUI(main);
                     Inventory inv = pGUI.createNewItemStock(Material.DIRT);
                     player.openInventory(inv);
                     player.sendMessage("You tried to open the inventory Overview");

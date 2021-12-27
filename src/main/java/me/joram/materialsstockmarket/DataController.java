@@ -5,10 +5,13 @@ import org.bukkit.Material;
 
 public class DataController {
 
-    MaterialsStockMarket main;
+    Main main;
 
-    public DataController(MaterialsStockMarket main){
+
+    public DataController(Main main){
         this.main = main;
+
+
     }
 
 
@@ -18,8 +21,7 @@ public class DataController {
     }
 
     public void addItemToList(Material mat, int buyPrice, int sellPrice){
-        main.getConfig().set("Materials." + mat.name(), "buy:. " + "sell:");
-        main.saveConfig();
+
     }
 
 }
