@@ -15,9 +15,12 @@ public class PlayerListener implements Listener {
     private Inventory mainmenuInv;
     private  BuySell buySell;
 
-    public PlayerListener() {
 
+
+    public PlayerListener() {
          buySell = new BuySell();
+
+
     }
 
     @EventHandler
@@ -115,7 +118,6 @@ public class PlayerListener implements Listener {
                     buySell.sellItem(clickedItem.getType(), 256,  e.getWhoClicked());
                     break;
             }
-
         }
     }
 }

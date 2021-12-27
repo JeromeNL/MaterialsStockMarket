@@ -15,6 +15,7 @@ public class PlayerCommands implements CommandExecutor {
             return false;
         }
 
+
         Player player = (Player) sender;
 
         if(cmd.getName().equalsIgnoreCase("mm")){

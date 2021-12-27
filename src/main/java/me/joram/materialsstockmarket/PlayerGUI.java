@@ -15,6 +15,8 @@ public class PlayerGUI {
     private int inventorySize;
     private final String title;
     public ItemStack[] materialList;
+    private DataController dc;
+    private MaterialsStockMarket main;
 
     public PlayerGUI(){
         inventorySize = 36;
@@ -43,17 +45,13 @@ public class PlayerGUI {
         newInv.setItem(4, paperItem);
 
         for (int i = 9; i < 36; i++) {
-
                 if((materialList[i -  9] != null)) {
                     ItemStack newItem = materialList[i - 9];
                     newInv.setItem(i, newItem);
                 }
-
         }
         return newInv;
     }
-
-
 
     public Inventory createNewItemStock(Material mat){
         Inventory subInventory = Bukkit.createInventory(null, 27, "Overview " + mat.name());
@@ -117,10 +115,17 @@ public class PlayerGUI {
         addItemToOverview(Material.OAK_LOG);
         addItemToOverview(Material.DARK_OAK_LOG);
         addItemToOverview(Material.SAND);
-
-
+        addItemToOverview(Material.DIAMOND_CHESTPLATE);
     }
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
