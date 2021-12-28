@@ -1,0 +1,14 @@
+items:
+  - 'DIAMOND'
+  - 'SAND'
+  - 'DIRT'
+buyprices:
+  DIAMOND: 10.0
+  SAND: 2.78
+  DIRT: 2
+sellprices:
+  DIAMOND: 8
+  SAND: 2.24
+  DIRT: 1
+
+

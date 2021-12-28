@@ -7,6 +7,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class PlayerCommands implements CommandExecutor {
     private Main main;
 
@@ -34,14 +37,17 @@ public class PlayerCommands implements CommandExecutor {
                     player.openInventory(overViewInv);
                     player.sendMessage("You tried to open the inventory Overview");
                 }
-                if(args[0].equalsIgnoreCase("test")){
+                if(args[0].equalsIgnoreCase("test")) {
 
+                    String[] stringArray = new String[27];
+                    List<String> stringList = Arrays.asList(stringArray);
 
-                    player.sendMessage("You tried to open the inventory Overview");
-                    PlayerGUI pGUI = new PlayerGUI(main);
-                    Inventory inv = pGUI.createNewItemStock(Material.DIRT);
-                    player.openInventory(inv);
-                    player.sendMessage("You tried to open the inventory Overview");
+                    stringList = main.getConfig().getStringList("items");
+
+                    for(int i = 0; i < stringList.size(); i++){
+                        player.sendMessage("Item: " + stringList.get(i));
+                    }
+
                 }
             }
         }
