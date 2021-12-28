@@ -16,20 +16,20 @@ public class PlayerGUI {
     private final String title;
     public ItemStack[] materialList;
     private Main main;
+    private DataController dataController;
 
     public PlayerGUI(Main main) {
         inventorySize = 36;
         materialList = new ItemStack[27];
         title = "Market Overview";
         this.main = main;
-         addAllItems();
+        dataController = new DataController(main);
+        addAllItems();
 
     }
 
     public Inventory generateOverViewGUI() {
         Inventory newInv = Bukkit.createInventory(null, inventorySize, "Market Overview");
-
-
 
 
         // Quit Button
@@ -71,11 +71,11 @@ public class PlayerGUI {
 
             if (i > 0) amount = amount * 2;
 
-            Double buyPrice = (main.getConfig().getDouble("buyprices." + mat.name()) * amount);
-            greenButtonMeta.setDisplayName(ChatColor.DARK_GREEN + "Buy " + ChatColor.GREEN + amount + "x" + ChatColor.DARK_GREEN +  " for: $" + ChatColor.GREEN + buyPrice);
+            Double buyPrice = dataController.getBuyPrice(mat, amount);
+            greenButtonMeta.setDisplayName(ChatColor.DARK_GREEN + "Buy " + ChatColor.GREEN + amount + "x" + ChatColor.DARK_GREEN + " for: $" + ChatColor.GREEN + buyPrice);
 
-            Double sellPrice = (main.getConfig().getDouble("sellprices." + mat.name()) * amount);
-            redButtonMeta.setDisplayName(ChatColor.DARK_RED + "Sell " + ChatColor.RED + amount + "x" + ChatColor.DARK_RED + "for: $" + ChatColor.RED + sellPrice);
+            Double sellPrice = dataController.getBuyPrice(mat, amount);
+            redButtonMeta.setDisplayName(ChatColor.DARK_RED + "Sell " + ChatColor.RED + amount + "x" + ChatColor.DARK_RED + " for: $" + ChatColor.RED + sellPrice);
 
             greenButton.setItemMeta(greenButtonMeta);
             redButton.setItemMeta(redButtonMeta);
@@ -104,7 +104,6 @@ public class PlayerGUI {
             if (materialList[i] == null) {
                 isFilled = false;
                 materialList[i] = item;
-
             }
             i++;
         }
@@ -112,22 +111,15 @@ public class PlayerGUI {
 
 
     public void addAllItems() {
+        List<String> stringList = dataController.getAllItems();
 
-        String[] stringArray = new String[27];
-        List<String> stringList = Arrays.asList(stringArray);
-
-        stringList = main.getConfig().getStringList("items");
-
-        for(int i = 0; i < stringList.size(); i++){
+        for (int i = 0; i < stringList.size(); i++) {
             ItemStack newItem = new ItemStack(Material.valueOf(stringList.get(i)));
-           materialList[i] = newItem;
+            materialList[i] = newItem;
         }
-
     }
+}
 
-
-
-    }
 
 
 

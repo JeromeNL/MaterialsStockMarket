@@ -3,6 +3,9 @@ package me.joram.materialsstockmarket;
 
 import org.bukkit.Material;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class DataController {
 
     Main main;
@@ -14,14 +17,26 @@ public class DataController {
 
     }
 
-
-
-    public void getAllItems(){
-
+    public Double getBuyPrice(Material mat, int amount){
+        Double buyPrice = (main.getConfig().getDouble("buyprices." + mat.name()) * amount);
+        return buyPrice;
     }
 
-    public void addItemToList(Material mat, int buyPrice, int sellPrice){
-
+    public Double getSellPrice(Material mat, int amount){
+        Double sellPrice = (main.getConfig().getDouble("sellprices." + mat.name()) * amount);
+        return sellPrice;
     }
+
+    public List<String> getAllItems() {
+        String[] stringArray = new String[27];
+        List<String> stringList = Arrays.asList(stringArray);
+
+        stringList = main.getConfig().getStringList("items");
+        return stringList;
+    }
+
+
+
+
 
 }
