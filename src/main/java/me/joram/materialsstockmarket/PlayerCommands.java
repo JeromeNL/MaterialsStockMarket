@@ -1,5 +1,6 @@
 package me.joram.materialsstockmarket;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -29,6 +30,12 @@ public class PlayerCommands implements CommandExecutor {
         Player player = (Player) sender;
 
         if(cmd.getName().equalsIgnoreCase("mm")){
+            if(!(player.hasPermission("MaterialsStockMarket.open"))){
+                player.sendMessage(ChatColor.DARK_RED + "ERROR! " + ChatColor.RED + " You do not have permission to use this command!");
+                return false;
+            }
+
+
             if(args.length > 0) {
                 if (args[0].equalsIgnoreCase("open")) {
                     player.sendMessage("You tried to open the inventory Overview");
@@ -36,18 +43,6 @@ public class PlayerCommands implements CommandExecutor {
                     Inventory overViewInv = pGUI.generateOverViewGUI();
                     player.openInventory(overViewInv);
                     player.sendMessage("You tried to open the inventory Overview");
-                }
-                if(args[0].equalsIgnoreCase("test")) {
-
-                    String[] stringArray = new String[27];
-                    List<String> stringList = Arrays.asList(stringArray);
-
-                    stringList = main.getConfig().getStringList("items");
-
-                    for(int i = 0; i < stringList.size(); i++){
-                        player.sendMessage("Item: " + stringList.get(i));
-                    }
-
                 }
             }
         }
