@@ -1,5 +1,6 @@
 package me.joram.materialsstockmarket;
 
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -71,10 +72,11 @@ public class PlayerGUI {
 
             if (i > 0) amount = amount * 2;
 
+
             Double buyPrice = dataController.getBuyPrice(mat, amount);
             greenButtonMeta.setDisplayName(ChatColor.DARK_GREEN + "Buy " + ChatColor.GREEN + amount + "x" + ChatColor.DARK_GREEN + " for: $" + ChatColor.GREEN + buyPrice);
 
-            Double sellPrice = dataController.getBuyPrice(mat, amount);
+            Double sellPrice = dataController.getSellPrice(mat, amount);
             redButtonMeta.setDisplayName(ChatColor.DARK_RED + "Sell " + ChatColor.RED + amount + "x" + ChatColor.DARK_RED + " for: $" + ChatColor.RED + sellPrice);
 
             greenButton.setItemMeta(greenButtonMeta);

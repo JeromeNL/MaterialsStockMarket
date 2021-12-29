@@ -1,5 +1,6 @@
 package me.joram.materialsstockmarket;
 
+import com.earth2me.essentials.api.UserDoesNotExistException;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -20,14 +21,15 @@ public class PlayerListener implements Listener {
 
 
     public PlayerListener(Main main) {
-         buySell = new BuySell();
+
          this.main = main;
+        buySell = new BuySell(main);
 
 
     }
 
     @EventHandler
-    public void InventoryClick(InventoryClickEvent e) {
+    public void InventoryClick(InventoryClickEvent e) throws UserDoesNotExistException {
 
         // Cancel pick Item
         if ((e.getView().getTitle().equalsIgnoreCase("Market Overview"))) {

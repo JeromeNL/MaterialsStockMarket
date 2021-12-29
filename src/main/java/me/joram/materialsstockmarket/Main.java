@@ -1,5 +1,6 @@
 package me.joram.materialsstockmarket;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.RecipeChoice;
@@ -15,8 +16,6 @@ public final class Main extends JavaPlugin {
         // Config.yml
         getConfig().options().copyDefaults();
         saveDefaultConfig();
-
-
 
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);

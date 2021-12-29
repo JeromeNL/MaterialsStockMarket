@@ -4,6 +4,7 @@ main: me.joram.materialsstockmarket.Main
 api-version: 1.18
 authors: [ JeromeNL ]
 description: A stock market for raw materials on your server
+softdepend: [EssentialsX]
 
 commands:
   mm:
