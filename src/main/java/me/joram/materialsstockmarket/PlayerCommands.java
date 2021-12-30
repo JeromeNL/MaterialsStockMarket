@@ -24,29 +24,25 @@ public class PlayerCommands implements CommandExecutor {
             return false;
         }
 
-
-
-
         Player player = (Player) sender;
 
         if(cmd.getName().equalsIgnoreCase("mm")){
             if(!(player.hasPermission("MaterialsStockMarket.open"))){
-                player.sendMessage(ChatColor.DARK_RED + "ERROR! " + ChatColor.RED + " You do not have permission to use this command!");
+                player.sendMessage(ChatColor.DARK_RED + "Error! " + ChatColor.RED + " You do not have permission to use this command!");
                 return false;
             }
 
-
             if(args.length > 0) {
                 if (args[0].equalsIgnoreCase("open")) {
-                    player.sendMessage("You tried to open the inventory Overview");
                     PlayerGUI pGUI = new PlayerGUI(main);
                     Inventory overViewInv = pGUI.generateOverViewGUI();
                     player.openInventory(overViewInv);
-                    player.sendMessage("You tried to open the inventory Overview");
+                }
+                else{
+                    player.sendMessage(ChatColor.DARK_RED + "Error! " + ChatColor.RED + " This command does not exist!");
                 }
             }
         }
         return false;
     }
-
 }

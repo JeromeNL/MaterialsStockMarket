@@ -15,7 +15,7 @@ public class PlayerGUI {
 
     private int inventorySize;
     private final String title;
-    public ItemStack[] materialList;
+    private ItemStack[] materialList;
     private Main main;
     private DataController dataController;
 
@@ -26,24 +26,28 @@ public class PlayerGUI {
         this.main = main;
         dataController = new DataController(main);
         addAllItems();
-
     }
 
     public Inventory generateOverViewGUI() {
         Inventory newInv = Bukkit.createInventory(null, inventorySize, "Market Overview");
 
-
         // Quit Button
         ItemStack exit = new ItemStack(Material.BARRIER);
         ItemMeta exitItemMeta = exit.getItemMeta();
-        exitItemMeta.setDisplayName("Quit");
+        exitItemMeta.setDisplayName(ChatColor.DARK_RED + "Quit");
         exit.setItemMeta(exitItemMeta);
         newInv.setItem(0, exit);
 
         // View Item
         ItemStack paperItem = new ItemStack(Material.PAPER);
         ItemMeta exampleItemMeta = paperItem.getItemMeta();
-        exitItemMeta.setDisplayName("Welcome to the Market Overview");
+        exampleItemMeta.setDisplayName(ChatColor.DARK_PURPLE + "Market Overview");
+
+        ArrayList<String> loreText = new ArrayList<String>();
+        loreText.add(ChatColor.LIGHT_PURPLE + "Welcome to the Market Overview!");
+        loreText.add(ChatColor.LIGHT_PURPLE + "Prices can change any moment.");
+
+        exampleItemMeta.setLore(loreText);
         paperItem.setItemMeta(exampleItemMeta);
         newInv.setItem(4, paperItem);
 
@@ -59,6 +63,9 @@ public class PlayerGUI {
     public Inventory createNewItemStock(Material mat) {
         Inventory subInventory = Bukkit.createInventory(null, 27, "Overview " + mat.name());
         ItemStack subItem = new ItemStack(mat);
+        ItemMeta subItemMeta = subItem.getItemMeta();
+        subItemMeta.setDisplayName(ChatColor.DARK_PURPLE + subItem.getType().name());
+        subItem.setItemMeta(subItemMeta);
         subInventory.setItem(4, subItem);
 
         // Green Buy Button
@@ -72,7 +79,6 @@ public class PlayerGUI {
 
             if (i > 0) amount = amount * 2;
 
-
             Double buyPrice = dataController.getBuyPrice(mat, amount);
             greenButtonMeta.setDisplayName(ChatColor.DARK_GREEN + "Buy " + ChatColor.GREEN + amount + "x" + ChatColor.DARK_GREEN + " for: $" + ChatColor.GREEN + buyPrice);
 
@@ -85,22 +91,22 @@ public class PlayerGUI {
             subInventory.setItem((i + 9), greenButton);
             subInventory.setItem((i + 18), redButton);
         }
+
         ItemStack exit = new ItemStack(Material.BARRIER);
         ItemMeta exitItemMeta = exit.getItemMeta();
-        exitItemMeta.setDisplayName("Back");
+        exitItemMeta.setDisplayName(ChatColor.DARK_RED + "Back");
         exit.setItemMeta(exitItemMeta);
         subInventory.setItem(0, exit);
 
         return subInventory;
-
     }
 
     // Fills array with data
     public void addItemToOverview(Material mat) {
         ItemStack item = new ItemStack(mat);
-
         boolean isFilled = true;
         int i = 0;
+
         while (isFilled) {
             if (i > 27) break;
             if (materialList[i] == null) {
@@ -110,7 +116,6 @@ public class PlayerGUI {
             i++;
         }
     }
-
 
     public void addAllItems() {
         List<String> stringList = dataController.getAllItems();

@@ -27,9 +27,7 @@ public class BuySell {
     }
 
     public boolean buyItem(Material mat, int amount, HumanEntity human) throws UserDoesNotExistException {
-        // BALANCE CHECK + REMOVE
         Player player = (Player) human;
-
         Double moneyAmount = dataController.getBuyPrice(mat, amount);
 
         if(!(hasEnoughBalance(player, moneyAmount))) {
@@ -45,7 +43,6 @@ public class BuySell {
                 Bukkit.broadcastMessage("Error!!!!");
             }
 
-
         if (getFreeSpaceForItems(mat, player) < amount) {
             player.sendMessage(ChatColor.DARK_RED + "Error! " + ChatColor.RED + "You do not have enough space left in your inventory to buy this amount of items!");
             return false;
@@ -53,43 +50,32 @@ public class BuySell {
             Inventory playerInv = player.getInventory();
             ItemStack newItem = new ItemStack(mat, amount);
             playerInv.addItem(newItem);
-            player.sendMessage(ChatColor.GREEN + "You have just bought " + amount + "x " + mat.name() + " from the market!");
+            player.sendMessage(ChatColor.DARK_GREEN + "You have just bought " + ChatColor.GREEN + amount + ChatColor.DARK_GREEN +"x "  + ChatColor.GREEN + mat.name()
+                    + ChatColor.DARK_GREEN + " for a price of: " + ChatColor.GREEN + "$" + moneyAmount + ChatColor.DARK_GREEN + " from the market!");
             return true;
         }
-
     }
 
     public boolean sellItem(Material mat, int amount, HumanEntity human){
-
         Player player = (Player) human;
-
         ItemStack sellItem = new ItemStack(mat);
+
         if(player.getInventory().containsAtLeast(sellItem, amount) == false){
-            player.sendMessage(ChatColor.DARK_RED + "!ERROR " + ChatColor.RED + "You do not have enough items of this product!");
+            player.sendMessage(ChatColor.DARK_RED + "Error! " + ChatColor.RED + "You do not have enough items of this product!");
             return false;
         }
-//
-//        player.sendMessage("balance: " + balance);
-//        player.sendMessage("Material: " + mat);
-//        player.sendMessage("Player: " + player);
-//        player.sendMessage("amount: " + amount);
+
         player.getInventory().removeItem(new ItemStack(mat, amount));
-        Double bedragje = dataController.getSellPrice(mat, amount);
+        Double moneyAmount = dataController.getSellPrice(mat, amount);
 
         try {
-            BigDecimal geldtje = BigDecimal.valueOf(bedragje);
-            Economy.add(player.getUniqueId(), geldtje);
+            BigDecimal moneyAmountBD = BigDecimal.valueOf(moneyAmount);
+            Economy.add(player.getUniqueId(), moneyAmountBD);
         }
         catch(Exception e){
             Bukkit.broadcastMessage("Error!!!!");
         }
-
-        // ADD BALANCE TO ACCOUNT
             return true;
-    }
-
-    public void changePrice(){
-
     }
 
     // Calculates the free space in Players inventory for an item
@@ -110,12 +96,10 @@ public class BuySell {
     }
 
     public boolean hasEnoughBalance(Player player, Double amount){
-
         try {
             BigDecimal amountBD = BigDecimal.valueOf(amount);
            if(Economy.hasEnough(player.getUniqueId(), amountBD) == true)
                return true;
-
         }
         catch(Exception e){
             e.getMessage();

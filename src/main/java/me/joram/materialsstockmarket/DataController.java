@@ -1,6 +1,5 @@
 package me.joram.materialsstockmarket;
 
-
 import org.bukkit.Material;
 
 import java.util.Arrays;
@@ -10,11 +9,8 @@ public class DataController {
 
     Main main;
 
-
     public DataController(Main main){
         this.main = main;
-
-
     }
 
     public Double getBuyPrice(Material mat, int amount){
@@ -34,9 +30,4 @@ public class DataController {
         stringList = main.getConfig().getStringList("items");
         return stringList;
     }
-
-
-
-
-
 }

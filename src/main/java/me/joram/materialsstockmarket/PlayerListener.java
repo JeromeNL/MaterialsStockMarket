@@ -1,9 +1,6 @@
 package me.joram.materialsstockmarket;
 
 import com.earth2me.essentials.api.UserDoesNotExistException;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -13,24 +10,17 @@ import org.bukkit.inventory.ItemStack;
 public class PlayerListener implements Listener {
 
     private ItemStack clickedItem;
-    private Inventory mainmenuInv;
-    private  BuySell buySell;
+    private Inventory mainMenuInv;
+    private BuySell buySell;
     private Main main;
 
-
-
-
     public PlayerListener(Main main) {
-
-         this.main = main;
+        this.main = main;
         buySell = new BuySell(main);
-
-
     }
 
     @EventHandler
     public void InventoryClick(InventoryClickEvent e) throws UserDoesNotExistException {
-
         // Cancel pick Item
         if ((e.getView().getTitle().equalsIgnoreCase("Market Overview"))) {
             if (e.getCurrentItem() == null)
@@ -50,7 +40,7 @@ public class PlayerListener implements Listener {
                 Inventory inv = pGUI.createNewItemStock(e.getCurrentItem().getType());
                 e.getWhoClicked().openInventory(inv);
                 clickedItem = e.getCurrentItem();
-                mainmenuInv = e.getInventory();
+                mainMenuInv = e.getInventory();
             }
         } else if ((e.getView().getTitle().equalsIgnoreCase("Overview " + clickedItem.getType()))) {
             if (e.getCurrentItem() == null)
@@ -63,7 +53,7 @@ public class PlayerListener implements Listener {
             e.setCancelled(true);
 
             if (e.getSlot() == 0)
-                e.getWhoClicked().openInventory(mainmenuInv);
+                e.getWhoClicked().openInventory(mainMenuInv);
 
             switch (e.getSlot()) {
                 case 9:

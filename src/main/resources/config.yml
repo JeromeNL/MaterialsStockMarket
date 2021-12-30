@@ -1,14 +1,27 @@
 items:
   - 'DIAMOND'
-  - 'SAND'
-  - 'DIRT'
+  - 'EMERALD'
+  - 'GOLD_INGOT'
+  - 'IRON_INGOT'
+  - 'LAPIS_LAZULI'
+  - 'OAK_LOG'
+  - 'DARK_OAK_LOG'
 buyprices:
-  DIAMOND: 10.0
-  SAND: 2.78
-  DIRT: 2
+  DIAMOND: 15
+  EMERALD: 10
+  GOLD_INGOT: 8
+  IRON_INGOT: 4
+  LAPIS_LAZULI: 1.75
+  OAK_LOG: 0.95
+  DARK_OAK_LOG: 0.95
 sellprices:
-  DIAMOND: 8
-  SAND: 2.24
-  DIRT: 1
+  DIAMOND: 12
+  EMERALD: 7.50
+  GOLD_INGOT: 5.50
+  IRON_INGOT: 2.25
+  LAPIS_LAZULI: 1.25
+  OAK_LOG: 0.35
+  DARK_OAK_LOG: 0.40
+
 
 
