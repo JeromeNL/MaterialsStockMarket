@@ -4,7 +4,6 @@ package me.joram.materialsstockmarket;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -13,7 +12,7 @@ import java.util.*;
 
 public class PlayerGUI {
 
-    private int inventorySize;
+    private final int inventorySize;
     private final String title;
     private ItemStack[] materialList;
     private Main main;

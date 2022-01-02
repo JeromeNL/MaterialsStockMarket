@@ -1,5 +1,7 @@
 package me.joram.materialsstockmarket;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 
 import java.util.Arrays;
@@ -23,11 +25,27 @@ public class DataController {
         return sellPrice;
     }
 
+    public void addToPrices(Material mat, Double newAmountBuy, Double newAmountSell){
+        Double currentBuyPrices = getBuyPrice(mat, 1);
+        Double currentSellPrices = getSellPrice(mat, 1);
+        main.getConfig().set("buyprices." + mat.name(), newAmountBuy);
+        main.getConfig().set("sellprices." + mat.name(), newAmountSell);
+        main.saveDefaultConfig();
+    }
+
     public List<String> getAllItems() {
         String[] stringArray = new String[27];
         List<String> stringList = Arrays.asList(stringArray);
 
         stringList = main.getConfig().getStringList("items");
+        return stringList;
+    }
+
+    public List<String> getItemsOfCategory(String category){
+        String[] stringArray = new String[27];
+        List<String> stringList = Arrays.asList(stringArray);
+
+        stringList = main.getConfig().getStringList("categories." + category.toUpperCase());
         return stringList;
     }
 }

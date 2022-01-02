@@ -31,17 +31,22 @@ public class PlayerCommands implements CommandExecutor {
                 player.sendMessage(ChatColor.DARK_RED + "Error! " + ChatColor.RED + " You do not have permission to use this command!");
                 return false;
             }
-
             if(args.length > 0) {
                 if (args[0].equalsIgnoreCase("open")) {
                     PlayerGUI pGUI = new PlayerGUI(main);
                     Inventory overViewInv = pGUI.generateOverViewGUI();
                     player.openInventory(overViewInv);
                 }
+                else if(args[0].equalsIgnoreCase("test")){
+                    AutoPricing auto = new AutoPricing(main);
+                    auto.runAutoPricing();
+
+                }
+            }
                 else{
                     player.sendMessage(ChatColor.DARK_RED + "Error! " + ChatColor.RED + " This command does not exist!");
                 }
-            }
+
         }
         return false;
     }

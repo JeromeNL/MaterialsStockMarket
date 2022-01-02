@@ -13,6 +13,8 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
 
+
+
         // Config.yml configuration
         getConfig().options().copyDefaults();
         saveDefaultConfig();
