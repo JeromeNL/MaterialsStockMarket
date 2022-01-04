@@ -71,6 +71,8 @@ public class BuySell {
         try {
             BigDecimal moneyAmountBD = BigDecimal.valueOf(moneyAmount);
             Economy.add(player.getUniqueId(), moneyAmountBD);
+            player.sendMessage(ChatColor.DARK_RED + "You have just sold " + ChatColor.RED + amount + ChatColor.DARK_RED +"x "  + ChatColor.RED + mat.name()
+                    + ChatColor.DARK_RED + " for a price of: " + ChatColor.RED + "$" + moneyAmount + ChatColor.DARK_RED + " to the market!");
         }
         catch(Exception e){
             Bukkit.broadcastMessage("Error!!!!");

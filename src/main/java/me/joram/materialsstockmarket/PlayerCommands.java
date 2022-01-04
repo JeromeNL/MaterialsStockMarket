@@ -14,40 +14,44 @@ import java.util.List;
 public class PlayerCommands implements CommandExecutor {
     private Main main;
 
-    public PlayerCommands(Main main){
+    public PlayerCommands(Main main) {
         this.main = main;
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-        if(!(sender instanceof Player)){
+        if (!(sender instanceof Player)) {
             return false;
         }
 
         Player player = (Player) sender;
 
-        if(cmd.getName().equalsIgnoreCase("mm")){
-            if(!(player.hasPermission("MaterialsStockMarket.open"))){
+        if (cmd.getName().equalsIgnoreCase("mm")) {
+            if (!(player.hasPermission("MaterialsStockMarket.open"))) {
                 player.sendMessage(ChatColor.DARK_RED + "Error! " + ChatColor.RED + " You do not have permission to use this command!");
                 return false;
             }
-            if(args.length > 0) {
+            if (args.length > 0) {
                 if (args[0].equalsIgnoreCase("open")) {
                     PlayerGUI pGUI = new PlayerGUI(main);
                     Inventory overViewInv = pGUI.generateOverViewGUI();
                     player.openInventory(overViewInv);
-                }
-                else if(args[0].equalsIgnoreCase("test")){
+                } else if (args[0].equalsIgnoreCase("test")) {
                     AutoPricing auto = new AutoPricing(main);
                     auto.runAutoPricing();
 
+                } else if(args[0].equalsIgnoreCase("help")) {
+
+                    player.sendMessage(ChatColor.AQUA + "Use /mm open to open the Market Overview!");
                 }
-            }
-                else{
+                  else {
                     player.sendMessage(ChatColor.DARK_RED + "Error! " + ChatColor.RED + " This command does not exist!");
                 }
-
+            } else {
+                player.sendMessage(ChatColor.DARK_RED + "Error! " + ChatColor.RED + " This command does not exist!");
+            }
         }
         return false;
     }
 }
+
