@@ -8,4 +8,4 @@ softdepend: [EssentialsX]
 
 commands:
   mm:
-    description: Open the MarketOverview GUI.
+    description: All commands for MaterialsStockMarket!

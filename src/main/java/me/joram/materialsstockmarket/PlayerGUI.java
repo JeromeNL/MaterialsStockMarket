@@ -100,22 +100,6 @@ public class PlayerGUI {
         return subInventory;
     }
 
-    // Fills array with data
-    public void addItemToOverview(Material mat) {
-        ItemStack item = new ItemStack(mat);
-        boolean isFilled = true;
-        int i = 0;
-
-        while (isFilled) {
-            if (i > 27) break;
-            if (materialList[i] == null) {
-                isFilled = false;
-                materialList[i] = item;
-            }
-            i++;
-        }
-    }
-
     public void addAllItems() {
         List<String> stringList = dataController.getAllItems();
 

@@ -13,7 +13,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 
 public class BuySell {
     private Double balance;
@@ -40,7 +39,7 @@ public class BuySell {
                 Economy.add(player.getUniqueId(), moneyAmountBD);
             }
             catch(Exception e){
-                Bukkit.broadcastMessage("Error!!!!");
+                Bukkit.broadcastMessage(ChatColor.RED + "MMS error! Can not parse to BigDecimal");
             }
 
         if (getFreeSpaceForItems(mat, player) < amount) {
@@ -87,11 +86,9 @@ public class BuySell {
         for(ItemStack i : player.getInventory().getStorageContents()){
             if(i == null){
                 freeSpace = freeSpace + mat.getMaxStackSize();
-                player.sendMessage("FreeSpace++" + freeSpace);
             }
             else if(i.getType() == mat) {
                 freeSpace = freeSpace + (mat.getMaxStackSize() - i.getAmount());
-                player.sendMessage("FreeSpace++ " + freeSpace);
             }
         }
         return freeSpace;

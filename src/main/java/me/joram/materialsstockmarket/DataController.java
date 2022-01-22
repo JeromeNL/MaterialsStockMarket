@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class DataController {
@@ -26,11 +27,10 @@ public class DataController {
     }
 
     public void addToPrices(Material mat, Double newAmountBuy, Double newAmountSell){
-        Double currentBuyPrices = getBuyPrice(mat, 1);
-        Double currentSellPrices = getSellPrice(mat, 1);
         main.getConfig().set("buyprices." + mat.name(), newAmountBuy);
         main.getConfig().set("sellprices." + mat.name(), newAmountSell);
-        main.saveDefaultConfig();
+        main.saveConfig();
+
     }
 
     public List<String> getAllItems() {
@@ -48,4 +48,42 @@ public class DataController {
         stringList = main.getConfig().getStringList("categories." + category.toUpperCase());
         return stringList;
     }
+
+    public boolean getAutoPriceStatus(){
+        return main.getConfig().getBoolean("autoprice");
+    }
+
+    public void setAutoPriceStatus(boolean newStatus){
+        main.getConfig().set("autoprice", newStatus);
+        String message;
+        if(newStatus == true){
+            message = ChatColor.YELLOW + "WARN! The autoprice is" + ChatColor.YELLOW + ChatColor.UNDERLINE + "enabled!";
+        }
+        else{
+            message = ChatColor.YELLOW + "WARN! The autoprice is " + ChatColor.YELLOW + ChatColor.UNDERLINE + "disabled!";
+        }
+        Bukkit.broadcastMessage(message);
+    }
+
+    public HashMap<String, Double> getOldBuyPrices(){
+        HashMap<String, Double> oldBuyPrices = new HashMap<>();
+        List<String> allItems = getAllItems();
+
+        for(int i = 0; i < allItems.size(); i++){
+            oldBuyPrices.put(allItems.get(i), getBuyPrice(Material.valueOf(allItems.get(i)), 1));
+        }
+        return oldBuyPrices;
+    }
+
+    public boolean itemExists(String item){
+
+        List<String> items = getAllItems();
+        for(int i = 0; i < items.size(); i++){
+            if(item.equalsIgnoreCase(items.get(i))){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
