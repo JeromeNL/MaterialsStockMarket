@@ -49,7 +49,9 @@ public class PlayerCommands implements CommandExecutor {
                     } else {
                         try {
                             int amount = Integer.valueOf(args[1]);
-
+                                if(!(amount > 0 && amount < 10000)){
+                                    return false;
+                                }
                             for (int i = 0; i < amount; i++) {
                                 AutoPricing auto = new AutoPricing(main);
                                 auto.runAutoPricing();
@@ -74,7 +76,7 @@ public class PlayerCommands implements CommandExecutor {
                                 AutoPricing auto = new AutoPricing(main);
                                 auto.changeAllPrices(percentage * -1);
                                 player.sendMessage(ChatColor.DARK_RED + "Depression added of: -" + ChatColor.RED + percentage + ChatColor.DARK_RED + "%");
-                                Bukkit.broadcastMessage("Due to poor economic conditions, the stock market has fallen by " + percentage + "%");
+                                Bukkit.broadcastMessage(ChatColor.DARK_RED + "Warning: " + ChatColor.RED + "Due to poor economic conditions, the stock market has fallen by " + ChatColor.DARK_RED +  percentage + ChatColor.RED +  "%");
                             } else {
                                 player.sendMessage(ChatColor.DARK_RED + "Error! " + ChatColor.RED + "Use a value between 1 and 99 percent!");
                             }
