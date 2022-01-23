@@ -157,7 +157,8 @@ public class PlayerCommands implements CommandExecutor {
                     }
                     dataController.addToPrices(Material.valueOf(args[1].toUpperCase()), dataController.getBuyPrice(Material.valueOf(args[1].toUpperCase()), 1), amount);
                     player.sendMessage(ChatColor.GREEN + "You have changed the sell price of " + args[1] + " to " + amount);
-                } else{
+                }
+                else{
                     player.sendMessage(ChatColor.DARK_RED + "Error! " + ChatColor.RED + " This command does not exist!");
                 }
 

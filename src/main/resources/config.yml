@@ -1,4 +1,5 @@
 autoprice: false
+inventoryrows: 4
 items:
   - 'DIAMOND'
   - 'EMERALD'

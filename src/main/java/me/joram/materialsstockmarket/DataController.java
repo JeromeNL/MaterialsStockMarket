@@ -33,8 +33,8 @@ public class DataController {
 
     }
 
-    public List<String> getAllItems() {
-        String[] stringArray = new String[27];
+    public List<String> getAllItems(int invSize) {
+        String[] stringArray = new String[invSize];
         List<String> stringList = Arrays.asList(stringArray);
 
         stringList = main.getConfig().getStringList("items");
@@ -67,7 +67,7 @@ public class DataController {
 
     public HashMap<String, Double> getOldBuyPrices(){
         HashMap<String, Double> oldBuyPrices = new HashMap<>();
-        List<String> allItems = getAllItems();
+        List<String> allItems = getAllItems(getAmountOfSpaces());
 
         for(int i = 0; i < allItems.size(); i++){
             oldBuyPrices.put(allItems.get(i), getBuyPrice(Material.valueOf(allItems.get(i)), 1));
@@ -77,13 +77,25 @@ public class DataController {
 
     public boolean itemExists(String item){
 
-        List<String> items = getAllItems();
+        List<String> items = getAllItems(getAmountOfSpaces());
         for(int i = 0; i < items.size(); i++){
             if(item.equalsIgnoreCase(items.get(i))){
                 return true;
             }
         }
         return false;
+    }
+
+    public int getAmountOfSpaces(){
+        int spaces =  ((main.getConfig().getInt("inventoryrows") + 1) *9);
+        return spaces;
+    }
+    public boolean setAmountOfRows(int amount){
+        if(!(amount > 1 && amount < 6)){
+            return false;
+        }
+        main.getConfig().set("inventoryrows", amount);
+        return true;
     }
 
 }

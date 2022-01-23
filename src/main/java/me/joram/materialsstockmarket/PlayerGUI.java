@@ -18,12 +18,13 @@ public class PlayerGUI {
     private Main main;
     private DataController dataController;
 
+
     public PlayerGUI(Main main) {
-        inventorySize = 36;
-        materialList = new ItemStack[27];
         title = "Market Overview";
         this.main = main;
         dataController = new DataController(main);
+        inventorySize = (dataController.getAmountOfSpaces());
+        materialList = new ItemStack[inventorySize];
         addAllItems();
     }
 
@@ -50,7 +51,7 @@ public class PlayerGUI {
         paperItem.setItemMeta(exampleItemMeta);
         newInv.setItem(4, paperItem);
 
-        for (int i = 9; i < 36; i++) {
+        for (int i = 9; i < inventorySize; i++) {
             if ((materialList[i - 9] != null)) {
                 ItemStack newItem = materialList[i - 9];
                 newInv.setItem(i, newItem);
@@ -101,7 +102,7 @@ public class PlayerGUI {
     }
 
     public void addAllItems() {
-        List<String> stringList = dataController.getAllItems();
+        List<String> stringList = dataController.getAllItems(inventorySize);
 
         for (int i = 0; i < stringList.size(); i++) {
             ItemStack newItem = new ItemStack(Material.valueOf(stringList.get(i)));

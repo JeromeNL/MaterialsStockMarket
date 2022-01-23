@@ -169,7 +169,7 @@ public class AutoPricing {
         }
 
     public String biggestGainer(){
-        List<String> list = dataController.getAllItems();
+        List<String> list = dataController.getAllItems(dataController.getAmountOfSpaces());
         String biggestGainer = "nulllll";
         for(int i = 0; i < (list.size()); i++){
             if(list.size() == 0){
@@ -187,7 +187,7 @@ public class AutoPricing {
         return biggestGainer;
     }
     public String biggestLoser(){
-        List<String> list = dataController.getAllItems();
+        List<String> list = dataController.getAllItems(dataController.getAmountOfSpaces());
         String biggestLoser = "nulllll";
         for(int i = 0; i < (list.size()); i++){
             if(list.size() == 0){
@@ -206,12 +206,14 @@ public class AutoPricing {
     }
 
     public void changeAllPrices(int percentage){
-        for(int i = 0; i < dataController.getAllItems().size(); i++){
+        int amountOfRows = dataController.getAmountOfSpaces();
+
+        for(int i = 0; i < dataController.getAllItems(amountOfRows).size(); i++){
             Double amount = percentageToDecimal(Double.valueOf(percentage));
 
-           Double buyPrice = dataController.getBuyPrice(Material.valueOf(dataController.getAllItems().get(i)), 1);
-           Double sellPrice = dataController.getSellPrice(Material.valueOf(dataController.getAllItems().get(i)), 1);
-           dataController.addToPrices(Material.valueOf(dataController.getAllItems().get(i)), (buyPrice * amount), (sellPrice * amount));
+           Double buyPrice = dataController.getBuyPrice(Material.valueOf(dataController.getAllItems(amountOfRows).get(i)), 1);
+           Double sellPrice = dataController.getSellPrice(Material.valueOf(dataController.getAllItems(amountOfRows).get(i)), 1);
+           dataController.addToPrices(Material.valueOf(dataController.getAllItems(amountOfRows).get(i)), (buyPrice * amount), (sellPrice * amount));
         }
     }
     public Double positiveToNegative(Double pos){
