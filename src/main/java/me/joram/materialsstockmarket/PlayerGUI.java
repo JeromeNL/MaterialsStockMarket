@@ -4,7 +4,6 @@ package me.joram.materialsstockmarket;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -13,18 +12,19 @@ import java.util.*;
 
 public class PlayerGUI {
 
-    private int inventorySize;
+    private final int inventorySize;
     private final String title;
     private ItemStack[] materialList;
     private Main main;
     private DataController dataController;
 
+
     public PlayerGUI(Main main) {
-        inventorySize = 36;
-        materialList = new ItemStack[27];
         title = "Market Overview";
         this.main = main;
         dataController = new DataController(main);
+        inventorySize = (dataController.getAmountOfSpaces());
+        materialList = new ItemStack[inventorySize];
         addAllItems();
     }
 
@@ -51,7 +51,7 @@ public class PlayerGUI {
         paperItem.setItemMeta(exampleItemMeta);
         newInv.setItem(4, paperItem);
 
-        for (int i = 9; i < 36; i++) {
+        for (int i = 9; i < inventorySize; i++) {
             if ((materialList[i - 9] != null)) {
                 ItemStack newItem = materialList[i - 9];
                 newInv.setItem(i, newItem);
@@ -101,24 +101,8 @@ public class PlayerGUI {
         return subInventory;
     }
 
-    // Fills array with data
-    public void addItemToOverview(Material mat) {
-        ItemStack item = new ItemStack(mat);
-        boolean isFilled = true;
-        int i = 0;
-
-        while (isFilled) {
-            if (i > 27) break;
-            if (materialList[i] == null) {
-                isFilled = false;
-                materialList[i] = item;
-            }
-            i++;
-        }
-    }
-
     public void addAllItems() {
-        List<String> stringList = dataController.getAllItems();
+        List<String> stringList = dataController.getAllItems(inventorySize);
 
         for (int i = 0; i < stringList.size(); i++) {
             ItemStack newItem = new ItemStack(Material.valueOf(stringList.get(i)));

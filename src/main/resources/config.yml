@@ -1,3 +1,11 @@
+# autoprice (true OR false) true: the server will generate new values of all items.
+# inventoryrows: amount of rows in the GUI (excl. the first row for displaying some information)
+# autopriceseconds: the interval between two automatic stockmarket price update in seconds. (autoprice must be 'true'!)
+# For more information about the plugin and this config.yml: https://github.com/JeromeNL/MaterialsStockMarket
+
+autoprice: false
+inventoryrows: 3
+autopriceseconds: 24000
 items:
   - 'DIAMOND'
   - 'EMERALD'
@@ -6,6 +14,8 @@ items:
   - 'LAPIS_LAZULI'
   - 'OAK_LOG'
   - 'DARK_OAK_LOG'
+  - 'SAND'
+  - 'POTATO'
 buyprices:
   DIAMOND: 15
   EMERALD: 10
@@ -14,6 +24,8 @@ buyprices:
   LAPIS_LAZULI: 1.75
   OAK_LOG: 0.95
   DARK_OAK_LOG: 0.95
+  SAND: 0.1
+  POTATO: 0.25
 sellprices:
   DIAMOND: 12
   EMERALD: 7.50
@@ -22,6 +34,23 @@ sellprices:
   LAPIS_LAZULI: 1.25
   OAK_LOG: 0.35
   DARK_OAK_LOG: 0.40
+  SAND: 0.05
+  POTATO: 0.04
+categories:
+  GENERAL:
+    - 'LAPIS_LAZULI'
+  METAL:
+    - 'DIAMOND'
+    - 'EMERALD'
+    - 'GOLD_INGOT'
+    - 'IRON_INGOT'
+  WOOD:
+    - 'OAK_LOG'
+    - 'DARK_OAK_LOG'
+  ROCK:
+    - 'SAND'
+  FOOD:
+    - 'POTATO'
 
 
 

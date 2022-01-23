@@ -1,7 +1,5 @@
 package me.joram.materialsstockmarket;
 
-
-import com.earth2me.essentials.User;
 import com.earth2me.essentials.api.Economy;
 import com.earth2me.essentials.api.UserDoesNotExistException;
 import org.bukkit.Bukkit;
@@ -13,15 +11,12 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 
 public class BuySell {
-    private Double balance;
     private DataController dataController;
     private Main main;
 
     public BuySell(Main main) {
-        balance = 100.0;
         this.main = main;
         dataController = new DataController(main);
     }
@@ -40,7 +35,7 @@ public class BuySell {
                 Economy.add(player.getUniqueId(), moneyAmountBD);
             }
             catch(Exception e){
-                Bukkit.broadcastMessage("Error!!!!");
+                Bukkit.broadcastMessage(ChatColor.RED + "MMS error! Can not parse to BigDecimal");
             }
 
         if (getFreeSpaceForItems(mat, player) < amount) {
@@ -71,6 +66,8 @@ public class BuySell {
         try {
             BigDecimal moneyAmountBD = BigDecimal.valueOf(moneyAmount);
             Economy.add(player.getUniqueId(), moneyAmountBD);
+            player.sendMessage(ChatColor.DARK_RED + "You have just sold " + ChatColor.RED + amount + ChatColor.DARK_RED +"x "  + ChatColor.RED + mat.name()
+                    + ChatColor.DARK_RED + " for a price of: " + ChatColor.RED + "$" + moneyAmount + ChatColor.DARK_RED + " to the market!");
         }
         catch(Exception e){
             Bukkit.broadcastMessage("Error!!!!");
@@ -85,11 +82,9 @@ public class BuySell {
         for(ItemStack i : player.getInventory().getStorageContents()){
             if(i == null){
                 freeSpace = freeSpace + mat.getMaxStackSize();
-                player.sendMessage("FreeSpace++" + freeSpace);
             }
             else if(i.getType() == mat) {
                 freeSpace = freeSpace + (mat.getMaxStackSize() - i.getAmount());
-                player.sendMessage("FreeSpace++ " + freeSpace);
             }
         }
         return freeSpace;

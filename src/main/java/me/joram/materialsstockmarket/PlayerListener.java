@@ -1,6 +1,7 @@
 package me.joram.materialsstockmarket;
 
 import com.earth2me.essentials.api.UserDoesNotExistException;
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -13,10 +14,14 @@ public class PlayerListener implements Listener {
     private Inventory mainMenuInv;
     private BuySell buySell;
     private Main main;
+    private DataController dataController;
+    private int invSize;
 
     public PlayerListener(Main main) {
         this.main = main;
         buySell = new BuySell(main);
+        dataController = new DataController(main);
+        invSize = dataController.getAmountOfSpaces();
     }
 
     @EventHandler
@@ -35,7 +40,7 @@ public class PlayerListener implements Listener {
             // Decide click Action
             if (e.getSlot() == 0)
                 e.getWhoClicked().closeInventory();
-            else if (e.getSlot() >= 9 && e.getSlot() <= 35) {
+            else if (e.getSlot() >= 9 && e.getSlot() <= (invSize -1)) {
                 PlayerGUI pGUI = new PlayerGUI(main);
                 Inventory inv = pGUI.createNewItemStock(e.getCurrentItem().getType());
                 e.getWhoClicked().openInventory(inv);
@@ -55,6 +60,7 @@ public class PlayerListener implements Listener {
             if (e.getSlot() == 0)
                 e.getWhoClicked().openInventory(mainMenuInv);
 
+            // This could be done better. But this way, all the amounts are customizable :)
             switch (e.getSlot()) {
                 case 9:
                     buySell.buyItem(clickedItem.getType(), 1, e.getWhoClicked());
@@ -115,6 +121,7 @@ public class PlayerListener implements Listener {
             }
         }
     }
+
 }
 
 
