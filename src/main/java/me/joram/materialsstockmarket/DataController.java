@@ -98,4 +98,9 @@ public class DataController {
         return true;
     }
 
+    public int getIntervalAutoPrice(){
+         return main.getConfig().getInt("autopriceseconds");
+
+    }
+
 }

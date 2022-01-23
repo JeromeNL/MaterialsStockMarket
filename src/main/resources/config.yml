@@ -1,5 +1,11 @@
+# autoprice (true OR false) true: the server will generate new values of all items.
+# inventoryrows: amount of rows in the GUI (excl. the first row for displaying some information)
+# autopriceseconds: the interval between two automatic stockmarket price update in seconds. (autoprice must be 'true'!)
+# For more information about the plugin and this config.yml: https://github.com/JeromeNL/MaterialsStockMarket
+
 autoprice: false
-inventoryrows: 4
+inventoryrows: 3
+autopriceseconds: 24000
 items:
   - 'DIAMOND'
   - 'EMERALD'

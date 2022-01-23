@@ -11,15 +11,13 @@ import java.util.Random;
 
 public class AutoPricing {
 
-
     private Double general;
     private Double metal;
     private Double wood;
     private Double rock;
     private Double food;
-    private DataController dataController;
-    private String[] categories;
-    private Main main;
+    private final DataController dataController;
+    private final String[] categories;
     private NumberFormat nf;
     private HashMap<String, Double> oldBuyPricesList;
     private HashMap<String, Double> oldSellPricesList;
@@ -28,12 +26,12 @@ public class AutoPricing {
     private Double currentBiggestLoser;
     private String currentBiggestLoserName;
 
+
     public AutoPricing(Main main) {
-        this.main = main;
         categories = new String[5];
         dataController = new DataController(main);
-        oldBuyPricesList = new HashMap<String, Double>();
-        oldSellPricesList = new HashMap<String, Double>();
+        oldBuyPricesList = new HashMap<>();
+        oldSellPricesList = new HashMap<>();
         currentBiggestGainer = 0.420;
         currentBiggestGainerName = "N/A";
         currentBiggestLoserName = "N/A";
@@ -71,7 +69,7 @@ public class AutoPricing {
         rock = percentageToDecimal(decimalToPercentage(general) * 0.550);
 
         // general * 0.78
-        food = percentageToDecimal(decimalToPercentage(general) * 0.78);;
+        food = percentageToDecimal(decimalToPercentage(general) * 0.78);
     }
 
     public void fillCategories() {
@@ -161,7 +159,6 @@ public class AutoPricing {
     }
 
     public Double compareBuyPrice(String material){
-
            Double oldPrice = oldBuyPricesList.get(material);
            Double newPrice = dataController.getBuyPrice(Material.valueOf(material), 1);
            Double priceChange = ((newPrice - oldPrice) / oldPrice) * 100;

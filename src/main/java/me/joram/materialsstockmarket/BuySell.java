@@ -13,12 +13,10 @@ import org.bukkit.inventory.ItemStack;
 import java.math.BigDecimal;
 
 public class BuySell {
-    private Double balance;
     private DataController dataController;
     private Main main;
 
     public BuySell(Main main) {
-        balance = 100.0;
         this.main = main;
         dataController = new DataController(main);
     }
