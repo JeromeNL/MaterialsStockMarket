@@ -3,12 +3,12 @@
 MaterialsStockMarket allows you to simulate "commodity trading" on your Minecraft server! You can add up to 45 items to the nice looking buy/sell GUI. Ofcourse, you as admin can decide what the current buy and sell prices are.
 
 <h2>Commands/options</h2>
-/mm open: Opens the trading GUI.
-/mm addays <amount>: adds a amount of days to the auto pricing algorithm.
-/mm depression <percentage>: let all the stocks drop by a specific percentage.
-/mm help: opens the help overview.
-/mm changebuyprices <ITEM> <amount>: changes the buy price of an item. (decimals allowed, must be a positive value).
-/mm changesellprice <ITEM> <amount>: changes the sell price of an item. (decimals allowed, must be a positive value).
+/mm open: Opens the trading GUI.</br>
+/mm addays <amount>: adds a amount of days to the auto pricing algorithm.</br>
+/mm depression <percentage>: let all the stocks drop by a specific percentage.</br>
+/mm help: opens the help overview.</br>
+/mm changebuyprices <ITEM> <amount>: changes the buy price of an item. (decimals allowed, must be a positive value).</br>
+/mm changesellprice <ITEM> <amount>: changes the sell price of an item. (decimals allowed, must be a positive value).</br>
 
 <h2>Permissions</h2>
 If you want to give a player access to the trading GUI, you have to give him just one permission: 
@@ -35,10 +35,10 @@ If you want to add/remove items or change the prices, you have to edit the confi
 If you would like to reset your config.yml, please use the one from the GitHub Repository.
 
   <h5>Add new item</h5>
-  1. Add the item (IN CAPS!) to 'items:'
-  2. Add the item to 'buyprices' with the initial buy price.
-  3. repeat step 2 for 'sellprices'.
-  4. Place the item under the correct category (it is currently not possible to create categories by your own).
+  1. Add the item (IN CAPS!) to 'items:'</br>
+  2. Add the item to 'buyprices' with the initial buy price.</br>
+  3. repeat step 2 for 'sellprices'.</br>
+  4. Place the item under the correct category (it is currently not possible to create categories by your own).</br>
   
 
 
