@@ -1,7 +1,5 @@
 package me.joram.materialsstockmarket;
 
-
-import com.earth2me.essentials.User;
 import com.earth2me.essentials.api.Economy;
 import com.earth2me.essentials.api.UserDoesNotExistException;
 import org.bukkit.Bukkit;

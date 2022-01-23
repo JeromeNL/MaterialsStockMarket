@@ -56,7 +56,7 @@ public class AutoPricing {
         int newGeneralInt = rand.nextInt(25);
         Double newGeneral = ((100 + Double.valueOf(newGeneralInt) - 10.5) / 100);
         general = newGeneral;
-        //return newGeneral;
+
     }
 
     public void assignNewValues() {
