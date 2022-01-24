@@ -39,7 +39,9 @@ If you would like to reset your config.yml, please use the one from the GitHub R
   2. Add the item to 'buyprices' with the initial buy price.</br>
   3. repeat step 2 for 'sellprices'.</br>
   4. Place the item under the correct category (it is currently not possible to create categories by your own).</br>
-  
 
-
-
+  <h5>Change settings</h5>
+  You have the possibility to change specific settings in the config.yml file. In the top of the file, you can edit the plugin to your needs. </br>
+  - <b>autoprice (value: true or false):</b> the server will generate new values of all items.</br>
+  - <b>inventoryrows:</b> amount of rows in the GUI (excl. the first row for displaying some information)</br>
+  - <b>autopriceseconds:</b> the interval between two automatic stockmarket price updates in seconds. (autoprice must be 'true')
